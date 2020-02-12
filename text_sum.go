@@ -1,22 +1,18 @@
-package main
+package text_summarization
 
 import (
-  "fmt"
-  "time"
-  "log"
-  "io/ioutil"
   "github.com/JesusIslam/tldr"
 )
 
 type TextSum struct {
-  extractor *Bag
+  extractor *tldr.Bag
 }
 
-func (self *TextSum) init() {
+func (self *TextSum) Init() {
   self.extractor = tldr.New()
 }
 
-func (self *TextSum) extract_main_sents(sentences string, num int) string {
-  result, _ := self.extractor.Summarize(sentences, num)
-  return result
+func (self *TextSum) ExtractMainSents(text string, num int) []string {
+  sentences, _ := self.extractor.Summarize(text, num)
+  return sentences
 }
